@@ -17,7 +17,7 @@ const DataTable = ({ data = [], columns = [] }) => {
     useTable({ columns, data }, useSortBy);
 
   const { colorMode } = useColorMode();
-  const isDark = colorMode === 'Dark';
+  const isDark = colorMode === 'dark';
 
   return (
     <Table {...getTableProps()}>

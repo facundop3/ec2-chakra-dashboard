@@ -31,17 +31,8 @@ const DataTablePagination = ({ setPage, currentPage, lastPage }) => {
         </Tooltip>
       </Flex>
 
-      <Text flexShrink="0" mr={8}>
-        Page{' '}
-        <Text fontWeight="bold" as="span">
-          {currentPage}
-          {/* {pageIndex + 1} */}
-        </Text>{' '}
-        of{' '}
-        <Text fontWeight="bold" as="span">
-          {lastPage}
-          {/* {pageOptions.length} */}
-        </Text>
+      <Text flexShrink="0" mr={8} mx="2" data-testid="page-counter">
+        {`Page ${currentPage} ${lastPage ? `of ${lastPage}` : ''}`}
       </Text>
 
       <Flex>

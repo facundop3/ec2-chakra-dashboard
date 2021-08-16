@@ -27,7 +27,6 @@ const Dashboard = ({ user, logout }) => {
 
   useEffect(() => {
     refreshData();
-    console.log('hey');
   }, [page, refreshData]);
 
   const lastPage = data?.lastPage;
@@ -54,7 +53,7 @@ const Dashboard = ({ user, logout }) => {
             isLoading={isLoading}
             error={error}
             data={data?.instances}
-            refetch={refetch}
+            refetch={refreshData}
             setPage={setPage}
           />
 

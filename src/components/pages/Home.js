@@ -11,7 +11,6 @@ const Home = () => {
     user,
     isLoading,
     logout: auth0Logout,
-    getAccessTokenSilently,
   } = useAuth0();
   const logout = () => auth0Logout({ returnTo: window.location.origin });
 
@@ -26,13 +25,7 @@ const Home = () => {
   }
 
   if (isAuthenticated) {
-    return (
-      <Dashboard
-        user={user}
-        logout={logout}
-        getAccessTokenSilently={getAccessTokenSilently}
-      />
-    );
+    return <Dashboard user={user} logout={logout} />;
   } else {
     return <Landing loginWithRedirect={loginWithRedirect} />;
   }
