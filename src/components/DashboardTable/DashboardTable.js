@@ -15,7 +15,7 @@ const DashboardTable = ({ isLoading, error, data, refetch }) => {
   }
 
   return (
-    <Box overflow="scroll" w="100vw" h="70vh">
+    <Box overflow="scroll" w="100vw" h={['60vh', '60vh', '65vh']}>
       <DataTable data={data} columns={EC2INSTANCE_TABLE_HEADER} />
     </Box>
   );
