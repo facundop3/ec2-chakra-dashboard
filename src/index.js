@@ -1,3 +1,4 @@
+import { Auth0Provider } from '@auth0/auth0-react';
 import { ColorModeScript } from '@chakra-ui/react';
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
@@ -5,10 +6,23 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 
+const {
+  REACT_APP_AUTH0_AUDIENCE,
+  REACT_APP_AUTH0_CLIENT_ID,
+  REACT_APP_AUTH0_DOMAIN,
+} = process.env;
+
 ReactDOM.render(
   <StrictMode>
     <ColorModeScript />
-    <App />
+    <Auth0Provider
+      domain={REACT_APP_AUTH0_DOMAIN}
+      clientId={REACT_APP_AUTH0_CLIENT_ID}
+      redirectUri={window.location.origin}
+      audience={REACT_APP_AUTH0_AUDIENCE}
+    >
+      <App />
+    </Auth0Provider>
   </StrictMode>,
   document.getElementById('root')
 );
