@@ -1,6 +1,6 @@
 ## Setup:
-1 - Install dependencies `yarn install`
-2 - Create a `.env` file following the `.env.example` file structure:
+1 - Install dependencies `yarn install` <br>
+2 - Create a `.env` file following the `.env.example` file structure:<br>
 
 `REACT_APP_AUTH0_AUDIENCE=<Your_auth0_audience>`
 
@@ -11,6 +11,7 @@
 `REACT_APP_API_URL=<Your_API_url>`
 
 If you're running server and client locally your `REACT_APP_API_URL` will look like: <br>
+<br>
 ```REACT_APP_API_URL=http://localhost:3005/api```
 
 After installing the dependencies and creating the `.env` file  you can start the project by running `yarn start`
