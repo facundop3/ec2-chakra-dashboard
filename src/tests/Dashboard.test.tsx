@@ -58,8 +58,7 @@ describe('Dashboard', () => {
 
     render(<Dashboard logout={logout} user={user} />);
 
-    const loadingSpinner = screen.getByText(/loading.../i);
-    expect(loadingSpinner).toBeInTheDocument();
+    const loadingSpinner = screen.queryByText(/loading.../i);
 
     await waitFor(() => expect(loadingSpinner).not.toBeInTheDocument());
 
