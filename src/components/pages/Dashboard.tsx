@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, FC } from 'react';
+import { useState, useCallback, FC } from 'react';
 import { useQuery } from 'react-query';
 import {
   Flex,
@@ -32,7 +32,7 @@ const Dashboard: FC<Props> = ({ user, logout }) => {
   const [page, setPage] = useState(1);
   const token = useTokenPromise();
   const { isLoading, error, data, refetch, remove } = useQuery<Data, Error>(
-    'repoData',
+    `EC2Instances-page:${page}`,
     () => getInstancesData(token, page)
   );
 
@@ -40,10 +40,6 @@ const Dashboard: FC<Props> = ({ user, logout }) => {
     remove();
     refetch();
   }, [refetch, remove]);
-
-  useEffect(() => {
-    refreshData();
-  }, [page, refreshData]);
 
   const lastPage = data?.lastPage;
   const isMobile = useBreakpointValue({ sm: true, base: true, md: false });
