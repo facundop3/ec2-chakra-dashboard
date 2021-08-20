@@ -1,4 +1,9 @@
-export const EC2INSTANCE_TABLE_HEADER = [
+export type EC2InstancesTableHeader = {
+  Header: string;
+  accessor: string;
+};
+
+export const EC2INSTANCE_TABLE_HEADER: EC2InstancesTableHeader[] = [
   {
     Header: 'Instance name',
     accessor: 'Name',

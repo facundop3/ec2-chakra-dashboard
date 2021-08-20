@@ -1,11 +1,19 @@
-import React from 'react';
+import { FC } from 'react';
 import { Box } from '@chakra-ui/react';
 import ErrorState from './ErrorState';
 import LoadingState from './LoadingState';
 import DataTable from '../DataTable';
 import { EC2INSTANCE_TABLE_HEADER } from '../constants';
+import { EC2Instance } from '../types';
 
-const DashboardTable = ({ isLoading, error, data, refetch }) => {
+type Props = {
+  isLoading: Boolean;
+  error: Error | null;
+  data: EC2Instance[];
+  refetch: () => void;
+};
+
+const DashboardTable: FC<Props> = ({ isLoading, error, data, refetch }) => {
   if (isLoading) {
     return <LoadingState />;
   }

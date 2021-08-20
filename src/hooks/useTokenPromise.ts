@@ -2,7 +2,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 const { REACT_APP_AUTH0_AUDIENCE } = process.env;
 
-const useTokenPromise = () => {
+const useTokenPromise = (): Promise<string> => {
   const { getAccessTokenSilently } = useAuth0();
 
   return getAccessTokenSilently({

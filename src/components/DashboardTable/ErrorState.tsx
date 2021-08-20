@@ -1,8 +1,12 @@
-import React from 'react';
+import { FC } from 'react';
 import { Button, Text } from '@chakra-ui/react';
 import { RepeatIcon } from '@chakra-ui/icons';
 
-const ErrorState = ({ refetch }) => {
+type Props = {
+  refetch: () => void;
+};
+
+const ErrorState: FC<Props> = ({ refetch }) => {
   return (
     <Text>
       Whoops something went wrong

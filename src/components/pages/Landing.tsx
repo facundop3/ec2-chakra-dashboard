@@ -1,7 +1,12 @@
-import React from 'react';
+import { FC } from 'react';
 import { Center, Flex, Text, Button } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
-const Landing = ({ loginWithRedirect }) => {
+
+type Props = {
+  loginWithRedirect: () => void;
+};
+
+const Landing: FC<Props> = ({ loginWithRedirect }) => {
   return (
     <Center h="full" p={3}>
       <Flex direction="column">
