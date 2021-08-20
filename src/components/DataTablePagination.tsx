@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { Center, Flex, Tooltip, IconButton, Text } from '@chakra-ui/react';
 import {
   ArrowLeftIcon,
@@ -7,7 +7,17 @@ import {
   ArrowRightIcon,
 } from '@chakra-ui/icons';
 
-const DataTablePagination = ({ setPage, currentPage, lastPage }) => {
+type Props = {
+  setPage: (page: number) => void;
+  currentPage: number;
+  lastPage?: number;
+};
+
+const DataTablePagination: FC<Props> = ({
+  setPage,
+  currentPage,
+  lastPage = 1,
+}) => {
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === lastPage;
 
@@ -16,6 +26,7 @@ const DataTablePagination = ({ setPage, currentPage, lastPage }) => {
       <Flex>
         <Tooltip label="First Page">
           <IconButton
+            aria-label="First Page"
             onClick={() => setPage(1)}
             isDisabled={isFirstPage}
             icon={<ArrowLeftIcon h={3} w={3} />}
@@ -24,6 +35,7 @@ const DataTablePagination = ({ setPage, currentPage, lastPage }) => {
         </Tooltip>
         <Tooltip label="Previous Page">
           <IconButton
+            aria-label="Previous Page"
             onClick={() => setPage(currentPage - 1)}
             isDisabled={isFirstPage}
             icon={<ChevronLeftIcon h={6} w={6} />}
@@ -31,13 +43,14 @@ const DataTablePagination = ({ setPage, currentPage, lastPage }) => {
         </Tooltip>
       </Flex>
 
-      <Text flexShrink="0" mr={8} mx="2" data-testid="page-counter">
+      <Text mr="8" mx="2" data-testid="page-counter">
         {`Page ${currentPage} ${lastPage ? `of ${lastPage}` : ''}`}
       </Text>
 
       <Flex>
         <Tooltip label="Next Page">
           <IconButton
+            aria-label="Next page"
             onClick={() => setPage(currentPage + 1)}
             isDisabled={isLastPage}
             icon={<ChevronRightIcon h={6} w={6} />}
@@ -45,6 +58,7 @@ const DataTablePagination = ({ setPage, currentPage, lastPage }) => {
         </Tooltip>
         <Tooltip label="Last Page">
           <IconButton
+            aria-label="Last Page"
             onClick={() => setPage(lastPage)}
             isDisabled={isLastPage}
             icon={<ArrowRightIcon h={3} w={3} />}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, FC } from 'react';
 import { useQuery } from 'react-query';
 import {
   Flex,
@@ -12,12 +12,28 @@ import DashboardTable from '../DashboardTable';
 import useTokenPromise from '../../hooks/useTokenPromise';
 import { getInstancesData } from '../../api';
 import DataTablePagination from '../DataTablePagination';
+import { EC2Instance } from '../types';
 
-const Dashboard = ({ user, logout }) => {
+type User = {
+  given_name?: string;
+};
+
+type Props = {
+  user: User;
+  logout: () => void;
+};
+
+type Data = {
+  lastPage: number;
+  instances: EC2Instance[];
+};
+
+const Dashboard: FC<Props> = ({ user, logout }) => {
   const [page, setPage] = useState(1);
   const token = useTokenPromise();
-  const { isLoading, error, data, refetch, remove } = useQuery('repoData', () =>
-    getInstancesData(token, page)
+  const { isLoading, error, data, refetch, remove } = useQuery<Data, Error>(
+    'repoData',
+    () => getInstancesData(token, page)
   );
 
   const refreshData = useCallback(() => {
@@ -52,9 +68,8 @@ const Dashboard = ({ user, logout }) => {
             key={page}
             isLoading={isLoading}
             error={error}
-            data={data?.instances}
+            data={data?.instances || []}
             refetch={refreshData}
-            setPage={setPage}
           />
 
           <DataTablePagination

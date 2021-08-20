@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import {
   Table,
   Thead,
@@ -11,8 +11,14 @@ import {
 } from '@chakra-ui/react';
 import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons';
 import { useTable, useSortBy } from 'react-table';
+import { EC2Instance } from './types';
 
-const DataTable = ({ data = [], columns = [] }) => {
+type Props = {
+  data: EC2Instance[];
+  columns: any[];
+};
+
+const DataTable: FC<Props> = ({ data = [], columns = [] }) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data }, useSortBy);
 
@@ -24,7 +30,7 @@ const DataTable = ({ data = [], columns = [] }) => {
       <Thead position="sticky" top="0" bg={isDark ? 'gray.800' : 'white'}>
         {headerGroups.map(headerGroup => (
           <Tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map(column => (
+            {headerGroup.headers.map((column: any) => (
               <Th
                 {...column.getHeaderProps(column.getSortByToggleProps())}
                 isNumeric={column.isNumeric}
@@ -46,11 +52,11 @@ const DataTable = ({ data = [], columns = [] }) => {
         ))}
       </Thead>
       <Tbody {...getTableBodyProps()}>
-        {rows.map(row => {
+        {rows.map((row: any) => {
           prepareRow(row);
           return (
             <Tr {...row.getRowProps()}>
-              {row.cells.map(cell => (
+              {row.cells.map((cell: any) => (
                 <Td
                   {...cell.getCellProps()}
                   isNumeric={cell.column.isNumeric}

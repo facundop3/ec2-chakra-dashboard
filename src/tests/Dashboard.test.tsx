@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { screen } from '@testing-library/react';
 import * as reactQuery from 'react-query';
@@ -23,7 +22,7 @@ describe('Dashboard', () => {
     const getAccessTokenSilently = jest.fn();
     const logout = jest.fn();
     getAccessTokenSilently.mockImplementation(async () => ({}));
-    useAuth0.mockImplementation(() => ({
+    (useAuth0 as jest.Mock).mockImplementation(() => ({
       loginWithRedirect,
       getAccessTokenSilently,
       isAuthenticated: true,
@@ -47,9 +46,11 @@ describe('Dashboard', () => {
     const logout = jest.fn();
     const paginationRegExp = new RegExp(`page 1 of ${lastPage}`, 'i');
 
-    getInstancesData.mockImplementation(async () => ec2Instances);
+    (getInstancesData as jest.Mock).mockImplementation(
+      async () => ec2Instances
+    );
     getAccessTokenSilently.mockImplementation(async () => ({}));
-    useAuth0.mockImplementation(() => ({
+    (useAuth0 as jest.Mock).mockImplementation(() => ({
       loginWithRedirect,
       getAccessTokenSilently,
       isAuthenticated: true,
@@ -79,15 +80,17 @@ describe('Dashboard', () => {
     const remove = jest.fn();
 
     jest.spyOn(reactQuery, 'useQuery');
-    reactQuery.useQuery.mockImplementation(() => ({
+    (reactQuery.useQuery as jest.Mock).mockImplementation(() => ({
       refetch,
       remove,
       data: ec2Instances,
     }));
 
-    getInstancesData.mockImplementation(async () => ec2Instances);
+    (getInstancesData as jest.Mock).mockImplementation(
+      async () => ec2Instances
+    );
     getAccessTokenSilently.mockImplementation(async () => ({}));
-    useAuth0.mockImplementation(() => ({
+    (useAuth0 as jest.Mock).mockImplementation(() => ({
       loginWithRedirect,
       getAccessTokenSilently,
       isAuthenticated: true,
@@ -118,15 +121,17 @@ describe('Dashboard', () => {
     const remove = jest.fn();
 
     jest.spyOn(reactQuery, 'useQuery');
-    reactQuery.useQuery.mockImplementation(() => ({
+    (reactQuery.useQuery as jest.Mock).mockImplementation(() => ({
       refetch,
       remove,
       error: true,
     }));
 
-    getInstancesData.mockImplementation(async () => ec2Instances);
+    (getInstancesData as jest.Mock).mockImplementation(
+      async () => ec2Instances
+    );
     getAccessTokenSilently.mockImplementation(async () => ({}));
-    useAuth0.mockImplementation(() => ({
+    (useAuth0 as jest.Mock).mockImplementation(() => ({
       loginWithRedirect,
       getAccessTokenSilently,
       isAuthenticated: true,

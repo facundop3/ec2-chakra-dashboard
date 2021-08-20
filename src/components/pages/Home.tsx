@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
+import { User } from '@auth0/auth0-spa-js';
 import { Center, Spinner } from '@chakra-ui/react';
-import React from 'react';
 import Dashboard from './Dashboard';
 import Landing from './Landing';
 
@@ -11,7 +11,7 @@ const Home = () => {
     user,
     isLoading,
     logout: auth0Logout,
-  } = useAuth0();
+  } = useAuth0<User>();
   const logout = () => auth0Logout({ returnTo: window.location.origin });
 
   if (isLoading) {
@@ -24,7 +24,7 @@ const Home = () => {
     );
   }
 
-  if (isAuthenticated) {
+  if (isAuthenticated && user) {
     return <Dashboard user={user} logout={logout} />;
   } else {
     return <Landing loginWithRedirect={loginWithRedirect} />;

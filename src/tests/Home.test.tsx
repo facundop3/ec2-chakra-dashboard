@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { screen } from '@testing-library/react';
 import { render, userEvent } from './test-utils';
@@ -14,7 +13,7 @@ afterEach(() => {
 describe('Home page', () => {
   test('Renders Home component with get Started button (login button)', () => {
     const loginWithRedirect = jest.fn();
-    useAuth0.mockImplementation(() => ({ loginWithRedirect }));
+    (useAuth0 as jest.Mock).mockImplementation(() => ({ loginWithRedirect }));
     render(<Home />);
 
     const getStarted = screen.getByRole('button', { name: /get started/i });
@@ -26,7 +25,10 @@ describe('Home page', () => {
 
   test('Renders Home component loading auth state', () => {
     const loginWithRedirect = jest.fn();
-    useAuth0.mockImplementation(() => ({ loginWithRedirect, isLoading: true }));
+    (useAuth0 as jest.Mock).mockImplementation(() => ({
+      loginWithRedirect,
+      isLoading: true,
+    }));
     render(<Home />);
 
     expect(screen.getByText(/Loading.../i)).toBeInTheDocument();
@@ -39,7 +41,7 @@ describe('Home page', () => {
     const getAccessTokenSilently = jest.fn();
     getAccessTokenSilently.mockImplementation(async () => ({}));
 
-    useAuth0.mockImplementation(() => ({
+    (useAuth0 as jest.Mock).mockImplementation(() => ({
       loginWithRedirect,
       getAccessTokenSilently,
       isAuthenticated: true,
