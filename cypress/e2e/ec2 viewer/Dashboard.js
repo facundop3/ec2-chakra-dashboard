@@ -8,6 +8,6 @@ describe('Landing', () => {
 
     cy.findByText(/loading.../i).should('exist');
 
-    cy.get('table').should('exist');
+    cy.get('table', { timeout: 10000 }).should('exist');
   });
 });
