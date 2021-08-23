@@ -4,3 +4,5 @@
 npx lint-staged
 
 npm test
+
+npm run test:e2e:run

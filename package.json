@@ -12,6 +12,7 @@
     "@testing-library/react": "^10.2.1",
     "@testing-library/user-event": "^13.2.1",
     "framer-motion": "^4.0.0",
+    "jsonwebtoken": "^8.5.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^3.0.0",
@@ -24,13 +25,19 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "CI=true react-scripts test",
+    "cy:run": "npx cypress run",
+    "cy:open": "npx cypress open",
+    "test:e2e": "is-ci \"test:e2e:run\" \"test:e2e:dev\"",
+    "test:e2e:run": "BROWSER=none start-server-and-test start http://localhost:3000 cy:run",
+    "test:e2e:open": "start-server-and-test start http://localhost:3000 cy:open",
     "test:w": "react-scripts test",
     "lint": "eslint --fix",
     "eject": "react-scripts eject",
     "prepare": "husky install"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": ["react-app", "plugin:cypress/recommended"],
+    "env": {"cypress/globals": true}
   },
   "lint-staged": {
     "**/*.+(js|jsx|ts|tsx|css)": [
@@ -51,15 +58,23 @@
     ]
   },
   "devDependencies": {
+    "@babel/eslint-plugin": "^7.14.5",
+    "@testing-library/cypress": "^8.0.0",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.6.2",
     "@types/react": "^17.0.19",
     "@types/react-dom": "^17.0.9",
     "@types/react-table": "^7.7.2",
+    "cypress": "^8.3.0",
+    "dotenv": "^10.0.0",
+    "eslint-config-kentcdodds": "^19.1.1",
+    "eslint-plugin-cypress": "^2.11.3",
     "faker": "^5.5.3",
     "husky": "^7.0.0",
+    "is-ci-cli": "^2.2.0",
     "lint-staged": "^11.1.2",
     "prettier": "^2.3.2",
+    "start-server-and-test": "^1.13.1",
     "typescript": "^4.3.5"
   }
 }

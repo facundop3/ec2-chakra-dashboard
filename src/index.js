@@ -20,6 +20,7 @@ ReactDOM.render(
       clientId={REACT_APP_AUTH0_CLIENT_ID}
       redirectUri={window.location.origin}
       audience={REACT_APP_AUTH0_AUDIENCE}
+      cacheLocation={window.Cypress ? 'localstorage' : 'memory'}
     >
       <App />
     </Auth0Provider>
