@@ -27,17 +27,24 @@
     "test": "CI=true react-scripts test",
     "cy:run": "npx cypress run",
     "cy:open": "npx cypress open",
+    "percy:cy:run": "percy exec -- npm run cy:run",
     "test:e2e": "is-ci \"test:e2e:run\" \"test:e2e:dev\"",
     "test:e2e:run": "BROWSER=none start-server-and-test start http://localhost:3000 cy:run",
     "test:e2e:open": "start-server-and-test start http://localhost:3000 cy:open",
+    "test:e2e:run:percy": "BROWSER=none start-server-and-test start http://localhost:3000 percy:cy:run",
     "test:w": "react-scripts test",
     "lint": "eslint --fix",
     "eject": "react-scripts eject",
     "prepare": "husky install"
   },
   "eslintConfig": {
-    "extends": ["react-app", "plugin:cypress/recommended"],
-    "env": {"cypress/globals": true}
+    "extends": [
+      "react-app",
+      "plugin:cypress/recommended"
+    ],
+    "env": {
+      "cypress/globals": true
+    }
   },
   "lint-staged": {
     "**/*.+(js|jsx|ts|tsx|css)": [
@@ -59,6 +66,8 @@
   },
   "devDependencies": {
     "@babel/eslint-plugin": "^7.14.5",
+    "@percy/cli": "^1.0.0-beta.65",
+    "@percy/cypress": "^3.1.1",
     "@testing-library/cypress": "^8.0.0",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.6.2",
