@@ -11,7 +11,7 @@ const Landing: FC<Props> = ({ loginWithRedirect }) => {
     <Center h="full" p={3}>
       <Flex direction="column">
         <Text fontSize={['4xl', '5xl', '7xl']}>
-          A simple EC2 instances viewer 👀
+          A simple EC2 instances viewer
         </Text>
         <Center>
           <Button
